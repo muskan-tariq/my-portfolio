@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muskan Tariq Software Engineer & UI/UX Designer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* Absolute reset for High-Budget feeling */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --primary: #FF69B4;
+      /* Hot Pink */
+      --secondary: #FFB6C1;
+      /* Light Pink */
+      --text: #3D2B3D;
+      /* Deep Plum */
+      --muted: #856C85;
+      --bg: #FFF0F5;
+      /* LavenderBlush */
+      --glass: rgba(255, 255, 255, 0.45);
+      --glass-border: rgba(255, 255, 255, 0.7);
+      --accent: var(--primary);
+      --nav-height: 80px;
+    }
+
+    html {
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    /* WebGL Canvas */
+    #canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Loading Overlay */
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      font-size: 2rem;
+      color: var(--text);
+      transition: opacity 1s ease;
+    }
+
+    /* Content Layout */
+    .viewport {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      pointer-events: none;
+    }
+
+    section {
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 120px 8vw 60px;
+      /* Increased top padding to clear header */
+      position: relative;
+      pointer-events: none;
+    }
+
+    /* Typography Hierarchy */
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 7vw, 3.8rem);
+      /* Reduced as requested */
+      font-weight: 500;
+      /* Serif looks better with slightly less weight */
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 25px;
+      color: var(--text);
+      font-style: italic;
+      /* Adding an aesthetic flair to the main title */
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 25px;
+    }
+
+    h3 {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .section-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--primary);
+      margin-bottom: 15px;
+      display: block;
+      opacity: 0.8;
+    }
+
+    p.sub {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 500px;
+    }
+
+    /* Glass Panels */
+    .glass-box {
+      pointer-events: auto;
+      background: var(--glass);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 35px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+      max-width: 600px;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    /* Smaller About Box specifically */
+    #about .glass-box {
+      max-width: 460px;
+      padding: 30px;
+    }
+
+    /* Abstract UI Nav */
+    nav {
+      position: fixed;
+      top: 20px;
+      left: 4vw;
+      right: 4vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 100px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transition: all 0.3s;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn-solid {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      display: inline-block;
+      padding: 14px 28px;
+      background: var(--text);
+      border: 1px solid var(--text);
+      border-radius: 50px;
+      color: #FFF;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .btn-solid:hover {
+      background: var(--muted);
+      transform: translateY(-2px);
+      border-color: var(--muted);
+    }
+
+    /* Tags & Components */
+    .tag-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 8px 18px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .timeline-item {
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .timeline-item:hover {
+      background: rgba(255, 255, 255, 0.85);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(255, 105, 180, 0.05);
+    }
+
+    .timeline-item h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .timeline-meta {
+      font-size: 0.8rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .timeline-item p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* Utility */
+    .flex-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(0, 0, 0, 0.08);
+      margin: 25px 0;
+    }
+
+    /* Browser Mockup Styling */
+    .browser-mockup {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #f1f1f1;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease;
+    }
+
+    .browser-mockup:hover {
+      transform: scale(1.02);
+    }
+
+    .browser-header {
+      background: #e8e8e8;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      gap: 5px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    .red {
+      background: #ff5f56;
+    }
+
+    .yellow {
+      background: #ffbd2e;
+    }
+
+    .green {
+      background: #27c93f;
+    }
+
+    .browser-content {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+    .browser-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .btn-visit {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--text);
+      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .btn-visit:hover {
+      background: #fff;
+      transform: translateY(-3px);
+    }
+
+    /* Scroll Top Button */
+    #scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s;
+    }
+
+    #scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #scroll-top:hover {
+      background: #fff;
+      transform: translateY(-5px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      nav {
+        top: 10px;
+        padding: 10px 15px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      /* Hide complicated nav on mobile */
+      section {
+        padding: 100px 5vw 40px;
+      }
+
+      .glass-box {
+        padding: 25px;
+        border-radius: 20px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .timeline-item {
+        padding: 15px;
+      }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--secondary);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Instant Loading Overlay Structure -->
+  <div id="loading-screen">Synthesizing... <span id="loading-progress" style="margin-left:10px;">0%</span></div>
+
+  <div id="canvas-container"></div>
+
+  <!-- Minimalist Nav -->
+  <nav>
+    <div class="logo">Muskan Tariq</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact" class="btn-solid" style="padding: 10px 20px;">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="viewport">
+
+    <!-- Hero -->
+    <section id="home">
+      <div class="fade-up glass-box" style="margin-top: 5vh;">
+        <span class="section-label">Muskan Tariq</span>
+        <h1>Software Engineer<br>& UI/UX Designer</h1>
+        <p class="sub" style="margin-bottom:20px;">Frontend Development · UX Design · Generative AI</p>
+        <p class="sub"><strong>📍 Pakistan</strong></p>
+
+        <div style="display:flex; gap:15px; margin-top:35px;">
+          <a href="#projects" class="btn-solid">View My Work</a>
+          <a href="#contact" class="btn-solid" style="background:transparent; color:var(--text);">Get In Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 About -->
+    <section id="about" style="justify-content: flex-end;">
+      <div class="fade-up glass-box">
+        <span class="section-label">01 About</span>
+        <h2>About Me</h2>
+        <p class="sub" style="margin-bottom: 20px;">I am a Software Engineer with a strong foundation in both frontend
+          development and UI/UX design. My work sits at the intersection of engineering and experience design
+          translating user needs into clean, functional, and visually compelling interfaces.</p>
+        <p class="sub" style="margin-bottom: 30px;">With hands-on experience across production websites, internships,
+          and academic research projects involving Generative AI and NLP, I bring a thoughtful, user-centered approach
+          to every problem I work on.</p>
+
+        <div class="flex-row">
+          <a href="mailto:muskantariq464@gmail.com" class="tag">Email</a>
+          <a href="https://linkedin.com/in/muskaan-tariq" target="_blank" rel="noreferrer" class="tag">LinkedIn</a>
+          <a href="https://github.com/muskan-tariq" target="_blank" rel="noreferrer" class="tag">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 Experience -->
+    <section id="experience">
+      <div class="fade-up glass-box">
+        <span class="section-label">02 Experience</span>
+        <h2>Work Experience</h2>
+
+        <div class="timeline-item">
+          <h3>Frontend Developer (UI/UX)</h3>
+          <div class="timeline-meta">hwhelp.me · July 2025 – September 2025 · Remote</div>
+          <p>Led the complete frontend redevelopment of the company website using PHP-based architecture and JavaScript,
+            significantly enhancing usability and visual consistency.<br><br>
+            Collaborated closely with backend systems to integrate dynamic content and improve overall website
+            functionality. Delivered responsive, scalable UI solutions with a strong focus on performance,
+            accessibility, and long-term maintainability.</p>
+
+          <div class="browser-mockup">
+            <div class="browser-header"><span class="dot red"></span><span class="dot yellow"></span><span
+                class="dot green"></span></div>
+            <div class="browser-content">
+              <img src="./hwhelp_me_mockup.png" alt="Hwhelp.me Live Preview">
+              <a href="https://hwhelp.me/" target="_blank" class="btn-visit">Live View</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <h3>Web Designer & Developer</h3>
+          <div class="timeline-meta">hair-locks.com · Freelance · Remote</div>
+          <p>Owned the end-to-end web design lifecycle for a live production website serving real users. Designed
+            high-impact landing pages aligned with brand identity and modern UX best practices. Optimized the UI for
+            performance, accessibility, and usability across all major devices and browsers.</p>
+
+          <div class="browser-mockup">
+            <div class="browser-header"><span class="dot red"></span><span class="dot yellow"></span><span
+                class="dot green"></span></div>
+            <div class="browser-content">
+              <img src="./hair_locks_mockup.png" alt="Hair Locks Live Preview">
+              <a href="https://hair-locks.com/" target="_blank" class="btn-visit">Live View</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <h3>Software Engineering Intern</h3>
+          <div class="timeline-meta">Service Industries Limited · July 2024 – August 2024 · Onsite</div>
+          <p>Participated in debugging and testing website features to ensure cross-browser compatibility and responsive
+            behavior. Assisted in optimizing web performance by identifying load-time bottlenecks and applying frontend
+            best practices. Gained practical exposure to network configuration, IP management, and system diagnostics
+            under IT mentorship.</p>
+
+          <div class="browser-mockup">
+            <div class="browser-header"><span class="dot red"></span><span class="dot yellow"></span><span
+                class="dot green"></span></div>
+            <div class="browser-content">
+              <img src="./service_mockup.png" alt="Service Industries Live Preview">
+              <a href="https://servisgroup.com/" target="_blank" class="btn-visit">Live View</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 Projects -->
+    <section id="projects" style="justify-content: flex-end;">
+      <div class="fade-up glass-box">
+        <span class="section-label">03 Projects</span>
+        <h2>Featured Projects</h2>
+
+        <div class="timeline-item">
+          <span class="section-label" style="font-size:0.75rem; margin-bottom:5px;">Project 01</span>
+          <h3>Integrow</h3>
+          <div class="timeline-meta">Final Year Project — In Progress</div>
+          <p style="margin-bottom:15px;">An AI-driven multi-agent SDLC automation platform that automates the software
+            development lifecycle from requirements gathering to system design using Generative AI and NLP. Built as a
+            cross-platform desktop application with cloud integration for secure, traceable project artifact management.
+          </p>
+          <div class="tag-grid" style="margin-top:0;">
+            <span class="tag">Next.js</span> <span class="tag">Electron</span> <span class="tag">Generative AI</span>
+            <span class="tag">NLP</span> <span class="tag">Supabase</span> <span class="tag">TypeScript</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <span class="section-label" style="font-size:0.75rem; margin-bottom:5px;">Project 02</span>
+          <h3>Aspect-Based Sentiment Analysis</h3>
+          <div class="timeline-meta">AI Research Project</div>
+          <p style="margin-bottom:15px;">A sentiment analysis system using a fine-tuned RoBERTa transformer model to
+            classify sentiments positive, negative, and neutral across multiple aspects within a single sentence, with
+            intuitive dashboards designed to present AI outputs clearly to non-technical users.</p>
+          <div class="tag-grid" style="margin-top:0;">
+            <span class="tag">RoBERTa</span> <span class="tag">HuggingFace</span> <span class="tag">Transformers</span>
+            <span class="tag">Python</span> <span class="tag">Dashboard Design</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 Skills -->
+    <section id="skills">
+      <div class="fade-up glass-box">
+        <span class="section-label">04 Skills</span>
+        <h2>Technical Skills</h2>
+
+        <div style="margin-bottom:20px;">
+          <h4 style="margin-bottom:8px;">Design & UX Research</h4>
+          <div class="tag-grid" style="margin-top:0;">
+            <span class="tag">Figma</span> <span class="tag">Adobe Photoshop</span> <span class="tag">Canva</span> <span
+              class="tag">Wireframing</span> <span class="tag">Prototyping</span> <span class="tag">Usability
+              Testing</span> <span class="tag">User Research</span> <span class="tag">Design Thinking</span> <span
+              class="tag">HCI</span> <span class="tag">Accessibility</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom:20px;">
+          <h4 style="margin-bottom:8px;">Frontend & Web</h4>
+          <div class="tag-grid" style="margin-top:0;">
+            <span class="tag">HTML</span> <span class="tag">CSS</span> <span class="tag">JavaScript</span> <span
+              class="tag">TypeScript</span> <span class="tag">React</span> <span class="tag">Next.js</span> <span
+              class="tag">Vue.js</span> <span class="tag">Angular</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom:20px;">
+          <h4 style="margin-bottom:8px;">Languages, Tools & AI</h4>
+          <div class="tag-grid" style="margin-top:0;">
+            <span class="tag">Python</span> <span class="tag">Java</span> <span class="tag">C++</span> <span
+              class="tag">Git</span> <span class="tag">Docker</span> <span class="tag">Vercel</span> <span
+              class="tag">Linux</span> <span class="tag">Node.js</span> <span class="tag">Electron</span> <span
+              class="tag">Generative AI</span> <span class="tag">HuggingFace</span> <span class="tag">NLP</span> <span
+              class="tag">Transformers</span> <span class="tag">REST APIs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 Achievements -->
+    <section id="achievements" style="justify-content: flex-end;">
+      <div class="fade-up glass-box">
+        <span class="section-label">05 Achievements</span>
+        <h2>Achievements</h2>
+
+        <div class="timeline-item">
+          <h3 style="font-size:1.15rem; display:flex; align-items:center; gap:8px;">🏆 UI/UX Design Competition — FAST
+            University</h3>
+          <p style="margin-top:10px;">Secured a position in the UI/UX Design Competition at FAST University,
+            demonstrating strong design thinking, usability principles, and the ability to deliver user-centered
+            solutions under competitive conditions.</p>
+        </div>
+
+        <div class="timeline-item">
+          <h3 style="font-size:1.15rem; display:flex; align-items:center; gap:8px;">⚡ Speed Programming Competitions
+          </h3>
+          <p style="margin-top:10px;">Participated in multiple speed programming competitions, sharpening logical
+            problem-solving and the ability to write efficient, optimized code under strict time constraints.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 Education -->
+    <section id="education">
+      <div class="fade-up glass-box">
+        <span class="section-label">06 Education</span>
+        <h2>Education</h2>
+
+        <div>
+          <h3 style="font-size:1.4rem; margin-bottom:5px;">BS Software Engineering</h3>
+          <div class="timeline-meta" style="font-size: 1rem;">FAST NUCES — Islamabad <br> August 2022 – 2026</div>
+          <p class="sub" style="font-size:1rem; margin-top:20px;"><strong>Relevant Coursework:</strong> UX Engineering,
+            Human-Computer Interaction, Data Structures, Database Systems, Software Engineering, Web Engineering,
+            Artificial Intelligence, Operating Systems, Software Quality Engineering, Software Design & Engineering,
+            Object-Oriented Programming.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 Contact -->
+    <section id="contact" style="justify-content: center; text-align: center;">
+      <div class="fade-up glass-box" style="margin: 0 auto; text-align:center;">
+        <span class="section-label">07 Contact</span>
+        <h1 style="margin-bottom: 20px;">Get In Touch</h1>
+        <p class="sub" style="margin: 0 auto; margin-bottom: 30px;">I am open to full-time roles, internships, freelance
+          projects, and meaningful collaborations. Feel free to reach out through any of the channels below.</p>
+
+        <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap; margin-bottom: 40px;">
+          <a href="mailto:muskantariq464@gmail.com" class="btn-solid" style="font-size: 1.1rem; padding: 15px 30px;">✉
+            muskantariq464@gmail.com</a>
+          <a href="tel:+923107785340" class="btn-solid"
+            style="background:rgba(255,255,255,0.8); color:var(--text); font-size: 1.1rem; padding: 15px 30px;">📞
+            +92-310-778-5340</a>
+        </div>
+
+        <div style="display:flex; justify-content:center; gap:20px; font-weight:700; margin-bottom: 30px;">
+          <a href="https://linkedin.com/in/muskaan-tariq" target="_blank" rel="noreferrer"
+            style="color:var(--text); text-decoration:none;">LINKEDIN</a>
+          <a href="https://github.com/muskan-tariq" target="_blank" rel="noreferrer"
+            style="color:var(--text); text-decoration:none;">GITHUB</a>
+          <a href="https://hair-locks.com/" target="_blank" rel="noreferrer"
+            style="color:var(--text); text-decoration:none;">HAIR LOCKS</a>
+          <a href="https://hwhelp.me/" target="_blank" rel="noreferrer"
+            style="color:var(--text); text-decoration:none;">HWHELP.ME</a>
+        </div>
+
+        <p class="sub" style="font-size:0.9rem;">Muskan Tariq · Software Engineer & UI/UX Designer · Pakistan
+          · 2025</p>
+      </div>
+    </section>
+
+  </div>
+
+  <div id="scroll-top">↑</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Model Loaders -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <script>
+    // --------------------------------------------------------
+    // SETUP REALISTIC THEATRIC ENGINE
+    // --------------------------------------------------------
+    const container = document.getElementById('canvas-container');
+    const loadingScreen = document.getElementById('loading-screen');
+    const progressText = document.getElementById('loading-progress');
+
+    const scene = new THREE.Scene();
+
+    // Warm Sunlit Fog representing a pink-toned surreal aesthetic
+    scene.background = new THREE.Color(0xFFE4E1); // Misty Rose
+    scene.fog = new THREE.FogExp2(0xFFE4E1, 0.015);
+
+    const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(-15, 12, 35); // Start far back viewing the ecosystem
+    camera.lookAt(0, 0, 0);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance", alpha: false });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Beautiful soft sun shadows
+
+    container.appendChild(renderer.domElement);
+
+    // --------------------------------------------------------
+    // PROCEDURAL LIGHTING & ENVIRONMENT
+    // --------------------------------------------------------
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8); // Base fill
+    scene.add(ambientLight);
+
+    // Massive Golden/Pink Sun
+    const sunLight = new THREE.DirectionalLight(0xFFE7BA, 2.0);
+    sunLight.position.set(-20, 30, -20);
+    sunLight.castShadow = true;
+    sunLight.shadow.mapSize.width = 1024;
+    sunLight.shadow.mapSize.height = 1024;
+    sunLight.shadow.bias = -0.001;
+
+    const d = 25;
+    sunLight.shadow.camera.left = -d;
+    sunLight.shadow.camera.right = d;
+    sunLight.shadow.camera.top = d;
+    sunLight.shadow.camera.bottom = -d;
+    scene.add(sunLight);
+
+    // Bounce light hitting the underbelly
+    const bounceLight = new THREE.HemisphereLight(0xFFE4E1, 0xFF69B4, 0.4);
+    scene.add(bounceLight);
+
+    // Glossy Magenta Ocean at the bottom
+    const waterGeo = new THREE.PlaneGeometry(200, 200);
+    const waterMat = new THREE.MeshPhysicalMaterial({
+      color: 0xFF69B4,
+      roughness: 0.1,  // Glossy reflection
+      metalness: 0.2,
+      transparent: true,
+      opacity: 0.7,
+      transmission: 0.5 // Glassy look
+    });
+    const waterPlane = new THREE.Mesh(waterGeo, waterMat);
+    waterPlane.rotation.x = -Math.PI / 2;
+    waterPlane.position.y = -3;
+    waterPlane.receiveShadow = true;
+    scene.add(waterPlane);
+
+    // Surround Floating Glass/Iridescent Spheres (Procedural Aesthetic)
+    const sphereGeo = new THREE.SphereGeometry(1, 32, 32); // Slightly lower segments for performance
+    const glassMat = new THREE.MeshPhysicalMaterial({
+      color: 0xffffff,
+      metalness: 0.1,
+      roughness: 0.05,
+      transmission: 1.0,
+      ior: 1.45,
+      transparent: true,
+      opacity: 1
+    });
+
+    const sphereGroup = new THREE.Group();
+    const isMobile = window.innerWidth < 768;
+    const sphereCount = isMobile ? 15 : 35; // Fewer spheres on mobile
+
+    for (let i = 0; i < sphereCount; i++) {
+      const mesh = new THREE.Mesh(sphereGeo, glassMat);
+      mesh.position.set(
+        (Math.random() - 0.5) * 50,
+        (Math.random() * 20) - 2,
+        (Math.random() - 0.5) * 50 - 10
+      );
+      const scale = Math.random() * (isMobile ? 1.5 : 2.5) + 0.5;
+      mesh.scale.set(scale, scale, scale);
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+
+      mesh.userData = {
+        bobSpeed: Math.random() * 1.2 + 0.4,
+        bobOffset: Math.random() * Math.PI * 2,
+        initialY: mesh.position.y
+      };
+      sphereGroup.add(mesh);
+    }
+    scene.add(sphereGroup);
+
+    // --------------------------------------------------------
+    // MODEL LOADING 
+    // --------------------------------------------------------
+    function normalizeScaleAndCenter(object3D, targetRadius) {
+      const box = new THREE.Box3().setFromObject(object3D);
+      const size = box.getSize(new THREE.Vector3());
+      const maxDim = Math.max(size.x, size.y, size.z);
+      if (maxDim === 0) return;
+      const scaleDist = targetRadius / maxDim;
+      object3D.scale.set(scaleDist, scaleDist, scaleDist);
+      box.setFromObject(object3D);
+      const center = box.getCenter(new THREE.Vector3());
+      object3D.position.sub(center);
+      return box;
+    }
+
+    const fileProgress = {};
+    const totalItemsToLoad = 2; // only the tiny glb files are left!
+    let itemsFinished = 0;
+
+    // Total sizes around 1.38MB total for lightning fast load!
+    const expectedTotals = { pond: 1251036, jelly: 130632 };
+
+    function onProgress(name, xhr) {
+      if (xhr.lengthComputable) {
+        fileProgress[name] = { loaded: xhr.loaded, total: xhr.total };
+      } else {
+        fileProgress[name] = { loaded: xhr.loaded, total: expectedTotals[name] };
+      }
+
+      let globalLoaded = 0;
+      let globalTotal = 0;
+      for (let key in expectedTotals) {
+        let loaded = fileProgress[key] ? fileProgress[key].loaded : 0;
+        let total = fileProgress[key]?.total || expectedTotals[key];
+        globalLoaded += Math.min(loaded, total);
+        globalTotal += total;
+      }
+      let percentage = Math.min(Math.floor((globalLoaded / globalTotal) * 100), 99);
+      progressText.innerText = percentage + '%';
+    }
+
+    function onItemLoaded() {
+      itemsFinished++;
+      if (itemsFinished === totalItemsToLoad) {
+        progressText.innerText = '100%';
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => loadingScreen.style.display = 'none', 1000);
+        initGSAP();
+      }
+    }
+
+    const gltfLoader = new THREE.GLTFLoader();
+
+    const sceneObjects = {
+      pond: null,
+      jelly: null
+    };
+
+    // 1. LOAD THE POND (Centerpiece)
+    gltfLoader.load('./little_pond__fish.glb', (gltf) => {
+      const pondModel = gltf.scene;
+      normalizeScaleAndCenter(pondModel, 18); // Force pond to be exactly 18 units wide
+      pondModel.traverse((node) => {
+        if (node.isMesh) {
+          node.castShadow = true; node.receiveShadow = true;
+          if (node.material) node.material.envMapIntensity = 1.0;
+        }
+      });
+      pondModel.position.y = -2;
+      scene.add(pondModel);
+      sceneObjects.pond = pondModel;
+      onItemLoaded();
+    }, (xhr) => onProgress('pond', xhr), () => onItemLoaded()); // Failsafe if it errors
+
+    // 2. LOAD THE SPONGEBOB JELLYFISH 
+    gltfLoader.load('./jelly_fish_spongebob.glb', (gltf) => {
+      const jellyModel = gltf.scene;
+      normalizeScaleAndCenter(jellyModel, 4.5);
+      jellyModel.traverse((node) => {
+        if (node.isMesh) {
+          node.castShadow = true;
+          if (node.material) {
+            node.material.transparent = true;
+            // Boost the emissive/color feeling of the Jelly
+            node.material.color.setHex(0xFFB6C1);
+            node.material.emissive = new THREE.Color(0xFF69B4);
+            node.material.emissiveIntensity = 0.4; // Brighter for the pink scene
+          }
+        }
+      });
+      jellyModel.position.set(2, 6, 0);
+      scene.add(jellyModel);
+      sceneObjects.jelly = jellyModel;
+      onItemLoaded();
+    }, (xhr) => onProgress('jelly', xhr), () => onItemLoaded());
+
+
+    // --------------------------------------------------------
+    // CINEMATIC GSAP DRONE MAP
+    // --------------------------------------------------------
+    gsap.registerPlugin(ScrollTrigger);
+
+    function initGSAP() {
+      const fadeElements = document.querySelectorAll('.fade-up');
+      fadeElements.forEach(el => {
+        gsap.to(el, {
+          scrollTrigger: { trigger: el, start: "top 90%" },
+          opacity: 1, y: 0, duration: 1, ease: "power2.out"
+        });
+      });
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 769px)", () => {
+        // Desktop Timeline
+        const timeline = gsap.timeline({
+          scrollTrigger: { trigger: ".viewport", start: "top top", end: "bottom bottom", scrub: 1.5 }
+        });
+
+        timeline.to(camera.position, { x: -12, y: 0, z: 14, ease: "power1.inOut" }, 0);
+        timeline.to(camera.rotation, { x: 0.1, y: -0.6, ease: "power1.inOut" }, 0);
+
+        timeline.to(camera.position, { x: 0, y: 1.5, z: 18, ease: "none" }, 1);
+        timeline.to(camera.rotation, { x: 0.05, y: -0.2, ease: "none" }, 1);
+
+        timeline.to(camera.position, { x: 8, y: 5, z: 16, ease: "power2.inOut" }, 2);
+        timeline.to(camera.rotation, { x: 0, y: 0.4, ease: "power2.inOut" }, 2);
+
+        timeline.to(camera.position, { x: 14, y: 12, z: 10, ease: "power1.inOut" }, 3);
+        timeline.to(camera.rotation, { x: -0.2, y: 0.8, ease: "power1.inOut" }, 3);
+
+        timeline.to(camera.position, { x: 0, y: 18, z: 0, ease: "power1.inOut" }, 4);
+        timeline.to(camera.rotation, { x: -1.5, y: 0, z: 0, ease: "power1.inOut" }, 4);
+
+        timeline.to(camera.position, { x: -8, y: 10, z: 25, ease: "power1.inOut" }, 5);
+        timeline.to(camera.rotation, { x: -0.1, y: -0.3, ease: "power1.inOut" }, 5);
+
+        timeline.to(camera.position, { x: 0, y: 22, z: 45, ease: "power3.out" }, 6);
+        timeline.to(camera.rotation, { x: -0.3, y: 0, z: 0, ease: "power3.out" }, 6);
+      });
+
+      mm.add("(max-width: 768px)", () => {
+        // Mobile Timeline - Pull camera back more
+        const timeline = gsap.timeline({
+          scrollTrigger: { trigger: ".viewport", start: "top top", end: "bottom bottom", scrub: 1 }
+        });
+
+        timeline.to(camera.position, { x: -15, y: 5, z: 25, ease: "power1.inOut" }, 0);
+
+        timeline.to(camera.position, { x: 0, y: 5, z: 28, ease: "none" }, 1);
+
+        timeline.to(camera.position, { x: 12, y: 8, z: 22, ease: "power2.inOut" }, 2);
+
+        timeline.to(camera.position, { x: 0, y: 15, z: 30, ease: "power1.inOut" }, 4);
+
+        timeline.to(camera.position, { x: 0, y: 30, z: 55, ease: "power3.out" }, 6);
+      });
+    }
+
+    // --------------------------------------------------------
+    // THE RENDER LOOP
+    // --------------------------------------------------------
+    const clock = new THREE.Clock();
+
+    function render() {
+      const time = clock.getElapsedTime();
+
+      if (sceneObjects.jelly) {
+        sceneObjects.jelly.position.y = 5 + Math.sin(time * 1.5) * 1.0;
+        sceneObjects.jelly.rotation.y = time * 0.2;
+        sceneObjects.jelly.rotation.z = Math.sin(time * 0.8) * 0.1;
+      }
+
+      if (sceneObjects.pond) {
+        sceneObjects.pond.rotation.y = Math.sin(time * 0.1) * 0.05;
+      }
+
+      // Animate the floating procedural glass spheres
+      sphereGroup.children.forEach(mesh => {
+        mesh.position.y = mesh.userData.initialY + Math.sin(time * mesh.userData.bobSpeed + mesh.userData.bobOffset) * 1.5;
+        mesh.rotation.y = time * 0.1 * mesh.userData.bobSpeed;
+      });
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(render);
+    }
+    render();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // Scroll to Top Functionality
+    const scrollTopBtn = document.getElementById('scroll-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+
+</html>
