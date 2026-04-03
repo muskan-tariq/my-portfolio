@@ -487,10 +487,16 @@
         padding: 15px;
       }
 
-      .hero-buttons, .contact-buttons {
+      .hero-buttons, .contact-buttons, .social-links {
         flex-direction: column;
         width: 100%;
         gap: 15px !important;
+      }
+      
+      .social-links {
+        flex-direction: row !important;
+        gap: 10px !important;
+        font-size: 0.8rem;
       }
       
       .hero-buttons > a, .contact-buttons > a {
@@ -763,7 +769,7 @@
           <a href="tel:+923107785340" class="btn-solid btn-outline" style="font-size: 1.1rem; padding: 15px 30px; border-radius: 50px;">📞 +92-310-778-5340</a>
         </div>
 
-        <div style="display:flex; justify-content:center; gap:20px; font-weight:700; margin-bottom: 30px;">
+        <div class="social-links" style="display:flex; justify-content:center; gap:20px; font-weight:700; margin-bottom: 30px; flex-wrap: wrap;">
           <a href="https://linkedin.com/in/muskaan-tariq" target="_blank" rel="noreferrer"
             style="color:var(--text); text-decoration:none;">LINKEDIN</a>
           <a href="https://github.com/muskan-tariq" target="_blank" rel="noreferrer"
