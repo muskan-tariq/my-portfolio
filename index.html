@@ -22,17 +22,13 @@
     }
 
     :root {
-      --primary: #FF69B4;
-      /* Hot Pink */
-      --secondary: #FFB6C1;
-      /* Light Pink */
-      --text: #3D2B3D;
-      /* Deep Plum */
-      --muted: #856C85;
-      --bg: #FFF0F5;
-      /* LavenderBlush */
-      --glass: rgba(255, 255, 255, 0.45);
-      --glass-border: rgba(255, 255, 255, 0.7);
+      --primary: #00E5FF;
+      --secondary: #0088CC;
+      --text: #E0E0FF;
+      --muted: #8AA4C8;
+      --bg: #050510;
+      --glass: rgba(10, 10, 25, 0.65);
+      --glass-border: rgba(0, 229, 255, 0.25);
       --accent: var(--primary);
       --nav-height: 80px;
     }
@@ -183,10 +179,10 @@
       align-items: center;
       z-index: 100;
       padding: 12px 24px;
-      background: rgba(255, 255, 255, 0.45);
+      background: rgba(10, 10, 25, 0.65);
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(0, 229, 255, 0.25);
       border-radius: 100px;
       max-width: 1400px;
       margin: 0 auto;
@@ -227,22 +223,35 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       display: inline-block;
       padding: 14px 28px;
-      background: var(--text);
-      border: 1px solid var(--text);
-      border-radius: 50px;
-      color: #FFF;
+      background: rgba(0, 229, 255, 0.15);
+      border: 1px solid rgba(0, 229, 255, 0.4);
+      color: var(--primary);
       text-decoration: none;
       font-weight: 700;
       font-size: 0.85rem;
       transition: all 0.3s ease;
       letter-spacing: 0.05em;
       text-transform: uppercase;
+      text-align: center;
     }
 
     .btn-solid:hover {
-      background: var(--muted);
+      background: var(--primary);
+      color: #000;
       transform: translateY(-2px);
-      border-color: var(--muted);
+      box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--muted);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: #fff;
+      color: #fff;
     }
 
     /* Tags & Components */
@@ -256,29 +265,29 @@
     .tag {
       font-family: 'Plus Jakarta Sans', sans-serif;
       padding: 8px 18px;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(0, 229, 255, 0.1);
       border-radius: 50px;
       font-size: 0.75rem;
       font-weight: 700;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 4px 10px rgba(0, 229, 255, 0.05);
+      border: 1px solid rgba(0, 229, 255, 0.3);
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
     .timeline-item {
-      background: rgba(255, 255, 255, 0.5);
+      background: rgba(15, 15, 35, 0.6);
       border-radius: 16px;
       padding: 20px;
       margin-bottom: 16px;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(0, 229, 255, 0.15);
     }
 
     .timeline-item:hover {
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(20, 20, 45, 0.8);
       transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(255, 105, 180, 0.05);
+      box-shadow: 0 10px 30px rgba(0, 229, 255, 0.15);
     }
 
     .timeline-item h3 {
@@ -323,8 +332,8 @@
       width: 100%;
       border-radius: 12px;
       overflow: hidden;
-      background: #f1f1f1;
-      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: #0a0a1a;
+      border: 1px solid rgba(0, 229, 255, 0.2);
       margin-top: 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       transition: transform 0.4s ease;
@@ -335,7 +344,7 @@
     }
 
     .browser-header {
-      background: #e8e8e8;
+      background: #111122;
       height: 25px;
       display: flex;
       align-items: center;
@@ -380,16 +389,16 @@
       position: absolute;
       bottom: 20px;
       right: 20px;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(0, 229, 255, 0.15);
       padding: 10px 20px;
       border-radius: 50px;
       font-size: 0.7rem;
       font-weight: 800;
-      color: var(--text);
+      color: #00E5FF;
       text-decoration: none;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 5px 15px rgba(0, 229, 255, 0.1);
       transition: all 0.3s;
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(0, 229, 255, 0.4);
       text-transform: uppercase;
       letter-spacing: 0.1em;
     }
@@ -427,7 +436,8 @@
     }
 
     #scroll-top:hover {
-      background: #fff;
+      background: var(--primary);
+      color: #000;
       transform: translateY(-5px);
     }
 
@@ -463,6 +473,18 @@
       .timeline-item {
         padding: 15px;
       }
+
+      .hero-buttons, .contact-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px !important;
+      }
+      
+      .hero-buttons > a, .contact-buttons > a {
+        width: 100%;
+        padding: 14px 20px !important;
+        font-size: 0.85rem !important;
+      }
     }
 
     /* Custom Scrollbar */
@@ -487,8 +509,7 @@
 
 <body>
 
-  <!-- Instant Loading Overlay Structure -->
-  <div id="loading-screen">Synthesizing... <span id="loading-progress" style="margin-left:10px;">0%</span></div>
+  <div id="loading-screen" style="opacity: 0; pointer-events: none;"></div>
 
   <div id="canvas-container"></div>
 
@@ -514,9 +535,9 @@
         <p class="sub" style="margin-bottom:20px;">Frontend Development · UX Design · Generative AI</p>
         <p class="sub"><strong>📍 Pakistan</strong></p>
 
-        <div style="display:flex; gap:15px; margin-top:35px;">
-          <a href="#projects" class="btn-solid">View My Work</a>
-          <a href="#contact" class="btn-solid" style="background:transparent; color:var(--text);">Get In Touch</a>
+        <div class="hero-buttons" style="display:flex; gap:15px; margin-top:35px;">
+          <a href="#projects" class="btn-solid" style="border-radius: 50px;">View My Work</a>
+          <a href="#contact" class="btn-solid btn-outline" style="border-radius: 50px;">Get In Touch</a>
         </div>
       </div>
     </section>
@@ -724,12 +745,9 @@
         <p class="sub" style="margin: 0 auto; margin-bottom: 30px;">I am open to full-time roles, internships, freelance
           projects, and meaningful collaborations. Feel free to reach out through any of the channels below.</p>
 
-        <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap; margin-bottom: 40px;">
-          <a href="mailto:muskantariq464@gmail.com" class="btn-solid" style="font-size: 1.1rem; padding: 15px 30px;">✉
-            muskantariq464@gmail.com</a>
-          <a href="tel:+923107785340" class="btn-solid"
-            style="background:rgba(255,255,255,0.8); color:var(--text); font-size: 1.1rem; padding: 15px 30px;">📞
-            +92-310-778-5340</a>
+        <div class="contact-buttons" style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap; margin-bottom: 40px;">
+          <a href="mailto:muskantariq464@gmail.com" class="btn-solid" style="font-size: 1.1rem; padding: 15px 30px; border-radius: 50px;">✉ muskantariq464@gmail.com</a>
+          <a href="tel:+923107785340" class="btn-solid btn-outline" style="font-size: 1.1rem; padding: 15px 30px; border-radius: 50px;">📞 +92-310-778-5340</a>
         </div>
 
         <div style="display:flex; justify-content:center; gap:20px; font-weight:700; margin-bottom: 30px;">
@@ -760,211 +778,97 @@
 
   <script>
     // --------------------------------------------------------
-    // SETUP REALISTIC THEATRIC ENGINE
+    // SETUP DARK STARFIELD ENGINE
     // --------------------------------------------------------
     const container = document.getElementById('canvas-container');
-    const loadingScreen = document.getElementById('loading-screen');
-    const progressText = document.getElementById('loading-progress');
-
     const scene = new THREE.Scene();
-
-    // Warm Sunlit Fog representing a pink-toned surreal aesthetic
-    scene.background = new THREE.Color(0xFFE4E1); // Misty Rose
-    scene.fog = new THREE.FogExp2(0xFFE4E1, 0.015);
+    scene.background = new THREE.Color(0x050510);
+    scene.fog = new THREE.FogExp2(0x050510, 0.012);
 
     const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(-15, 12, 35); // Start far back viewing the ecosystem
+    camera.position.set(0, 0, 50); // Start position
     camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance", alpha: false });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.2;
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Beautiful soft sun shadows
-
     container.appendChild(renderer.domElement);
 
     // --------------------------------------------------------
-    // PROCEDURAL LIGHTING & ENVIRONMENT
+    // PROCEDURAL STARFIELD & NEBULA
     // --------------------------------------------------------
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8); // Base fill
-    scene.add(ambientLight);
+    const starCount = 6000;
+    const starGeo = new THREE.BufferGeometry();
+    const starPos = new Float32Array(starCount * 3);
+    const starColors = new Float32Array(starCount * 3);
 
-    // Massive Golden/Pink Sun
-    const sunLight = new THREE.DirectionalLight(0xFFE7BA, 2.0);
-    sunLight.position.set(-20, 30, -20);
-    sunLight.castShadow = true;
-    sunLight.shadow.mapSize.width = 1024;
-    sunLight.shadow.mapSize.height = 1024;
-    sunLight.shadow.bias = -0.001;
-
-    const d = 25;
-    sunLight.shadow.camera.left = -d;
-    sunLight.shadow.camera.right = d;
-    sunLight.shadow.camera.top = d;
-    sunLight.shadow.camera.bottom = -d;
-    scene.add(sunLight);
-
-    // Bounce light hitting the underbelly
-    const bounceLight = new THREE.HemisphereLight(0xFFE4E1, 0xFF69B4, 0.4);
-    scene.add(bounceLight);
-
-    // Glossy Magenta Ocean at the bottom
-    const waterGeo = new THREE.PlaneGeometry(200, 200);
-    const waterMat = new THREE.MeshPhysicalMaterial({
-      color: 0xFF69B4,
-      roughness: 0.1,  // Glossy reflection
-      metalness: 0.2,
-      transparent: true,
-      opacity: 0.7,
-      transmission: 0.5 // Glassy look
-    });
-    const waterPlane = new THREE.Mesh(waterGeo, waterMat);
-    waterPlane.rotation.x = -Math.PI / 2;
-    waterPlane.position.y = -3;
-    waterPlane.receiveShadow = true;
-    scene.add(waterPlane);
-
-    // Surround Floating Glass/Iridescent Spheres (Procedural Aesthetic)
-    const sphereGeo = new THREE.SphereGeometry(1, 32, 32); // Slightly lower segments for performance
-    const glassMat = new THREE.MeshPhysicalMaterial({
-      color: 0xffffff,
-      metalness: 0.1,
-      roughness: 0.05,
-      transmission: 1.0,
-      ior: 1.45,
-      transparent: true,
-      opacity: 1
-    });
-
-    const sphereGroup = new THREE.Group();
-    const isMobile = window.innerWidth < 768;
-    const sphereCount = isMobile ? 15 : 35; // Fewer spheres on mobile
-
-    for (let i = 0; i < sphereCount; i++) {
-      const mesh = new THREE.Mesh(sphereGeo, glassMat);
-      mesh.position.set(
-        (Math.random() - 0.5) * 50,
-        (Math.random() * 20) - 2,
-        (Math.random() - 0.5) * 50 - 10
-      );
-      const scale = Math.random() * (isMobile ? 1.5 : 2.5) + 0.5;
-      mesh.scale.set(scale, scale, scale);
-      mesh.castShadow = true;
-      mesh.receiveShadow = true;
-
-      mesh.userData = {
-        bobSpeed: Math.random() * 1.2 + 0.4,
-        bobOffset: Math.random() * Math.PI * 2,
-        initialY: mesh.position.y
-      };
-      sphereGroup.add(mesh);
-    }
-    scene.add(sphereGroup);
-
-    // --------------------------------------------------------
-    // MODEL LOADING 
-    // --------------------------------------------------------
-    function normalizeScaleAndCenter(object3D, targetRadius) {
-      const box = new THREE.Box3().setFromObject(object3D);
-      const size = box.getSize(new THREE.Vector3());
-      const maxDim = Math.max(size.x, size.y, size.z);
-      if (maxDim === 0) return;
-      const scaleDist = targetRadius / maxDim;
-      object3D.scale.set(scaleDist, scaleDist, scaleDist);
-      box.setFromObject(object3D);
-      const center = box.getCenter(new THREE.Vector3());
-      object3D.position.sub(center);
-      return box;
-    }
-
-    const fileProgress = {};
-    const totalItemsToLoad = 2; // only the tiny glb files are left!
-    let itemsFinished = 0;
-
-    // Total sizes around 1.38MB total for lightning fast load!
-    const expectedTotals = { pond: 1251036, jelly: 130632 };
-
-    function onProgress(name, xhr) {
-      if (xhr.lengthComputable) {
-        fileProgress[name] = { loaded: xhr.loaded, total: xhr.total };
+    for (let i = 0; i < starCount * 3; i+=3) {
+      starPos[i] = (Math.random() - 0.5) * 400;     // x
+      starPos[i+1] = (Math.random() - 0.5) * 400;   // y
+      starPos[i+2] = (Math.random() - 0.5) * 400;   // z
+      
+      // Mix of white, cyan, and deep blue stars
+      const colorType = Math.random();
+      if(colorType > 0.9) {
+          starColors[i] = 0; starColors[i+1] = 0.9; starColors[i+2] = 1; // Cyan
+      } else if (colorType > 0.7) {
+          starColors[i] = 0; starColors[i+1] = 0.5; starColors[i+2] = 0.8; // Deep Blue
       } else {
-        fileProgress[name] = { loaded: xhr.loaded, total: expectedTotals[name] };
-      }
-
-      let globalLoaded = 0;
-      let globalTotal = 0;
-      for (let key in expectedTotals) {
-        let loaded = fileProgress[key] ? fileProgress[key].loaded : 0;
-        let total = fileProgress[key]?.total || expectedTotals[key];
-        globalLoaded += Math.min(loaded, total);
-        globalTotal += total;
-      }
-      let percentage = Math.min(Math.floor((globalLoaded / globalTotal) * 100), 99);
-      progressText.innerText = percentage + '%';
-    }
-
-    function onItemLoaded() {
-      itemsFinished++;
-      if (itemsFinished === totalItemsToLoad) {
-        progressText.innerText = '100%';
-        loadingScreen.style.opacity = '0';
-        setTimeout(() => loadingScreen.style.display = 'none', 1000);
-        initGSAP();
+          starColors[i] = 1; starColors[i+1] = 1; starColors[i+2] = 1; // White
       }
     }
 
-    const gltfLoader = new THREE.GLTFLoader();
+    starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+    starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
 
-    const sceneObjects = {
-      pond: null,
-      jelly: null
-    };
+    const starMat = new THREE.PointsMaterial({
+      size: 0.8,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.8,
+      sizeAttenuation: true
+    });
 
-    // 1. LOAD THE POND (Centerpiece)
-    gltfLoader.load('./little_pond__fish.glb', (gltf) => {
-      const pondModel = gltf.scene;
-      normalizeScaleAndCenter(pondModel, 18); // Force pond to be exactly 18 units wide
-      pondModel.traverse((node) => {
-        if (node.isMesh) {
-          node.castShadow = true; node.receiveShadow = true;
-          if (node.material) node.material.envMapIntensity = 1.0;
-        }
-      });
-      pondModel.position.y = -2;
-      scene.add(pondModel);
-      sceneObjects.pond = pondModel;
-      onItemLoaded();
-    }, (xhr) => onProgress('pond', xhr), () => onItemLoaded()); // Failsafe if it errors
+    const stars = new THREE.Points(starGeo, starMat);
+    scene.add(stars);
 
-    // 2. LOAD THE SPONGEBOB JELLYFISH 
-    gltfLoader.load('./jelly_fish_spongebob.glb', (gltf) => {
-      const jellyModel = gltf.scene;
-      normalizeScaleAndCenter(jellyModel, 4.5);
-      jellyModel.traverse((node) => {
-        if (node.isMesh) {
-          node.castShadow = true;
-          if (node.material) {
-            node.material.transparent = true;
-            // Boost the emissive/color feeling of the Jelly
-            node.material.color.setHex(0xFFB6C1);
-            node.material.emissive = new THREE.Color(0xFF69B4);
-            node.material.emissiveIntensity = 0.4; // Brighter for the pink scene
-          }
-        }
-      });
-      jellyModel.position.set(2, 6, 0);
-      scene.add(jellyModel);
-      sceneObjects.jelly = jellyModel;
-      onItemLoaded();
-    }, (xhr) => onProgress('jelly', xhr), () => onItemLoaded());
+    // Nebula dust effect using points
+    const dustCount = 800;
+    const dustGeo = new THREE.BufferGeometry();
+    const dustPos = new Float32Array(dustCount * 3);
+    for (let i = 0; i < dustCount * 3; i++) {
+        dustPos[i] = (Math.random() - 0.5) * 150;
+    }
+    dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
+    
+    // Create a circular gradient texture for blurred gas
+    const canvas = document.createElement('canvas');
+    canvas.width = 64; canvas.height = 64;
+    const ctx = canvas.getContext('2d');
+    const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    gradient.addColorStop(0, 'rgba(0, 229, 255, 1)'); // Cyan
+    gradient.addColorStop(0.2, 'rgba(0, 136, 204, 0.5)'); // Electric Blue
+    gradient.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0,0,64,64);
+    const dustTexture = new THREE.CanvasTexture(canvas);
 
+    const dustMat = new THREE.PointsMaterial({
+        size: 15,
+        map: dustTexture,
+        transparent: true,
+        opacity: 0.15,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending
+    });
+
+    const dust = new THREE.Points(dustGeo, dustMat);
+    scene.add(dust);
 
     // --------------------------------------------------------
-    // CINEMATIC GSAP DRONE MAP
+    // CINEMATIC GSAP CAMERA PATH
     // --------------------------------------------------------
     gsap.registerPlugin(ScrollTrigger);
 
@@ -977,53 +881,15 @@
         });
       });
 
-      const mm = gsap.matchMedia();
-
-      mm.add("(min-width: 769px)", () => {
-        // Desktop Timeline
-        const timeline = gsap.timeline({
-          scrollTrigger: { trigger: ".viewport", start: "top top", end: "bottom bottom", scrub: 1.5 }
-        });
-
-        timeline.to(camera.position, { x: -12, y: 0, z: 14, ease: "power1.inOut" }, 0);
-        timeline.to(camera.rotation, { x: 0.1, y: -0.6, ease: "power1.inOut" }, 0);
-
-        timeline.to(camera.position, { x: 0, y: 1.5, z: 18, ease: "none" }, 1);
-        timeline.to(camera.rotation, { x: 0.05, y: -0.2, ease: "none" }, 1);
-
-        timeline.to(camera.position, { x: 8, y: 5, z: 16, ease: "power2.inOut" }, 2);
-        timeline.to(camera.rotation, { x: 0, y: 0.4, ease: "power2.inOut" }, 2);
-
-        timeline.to(camera.position, { x: 14, y: 12, z: 10, ease: "power1.inOut" }, 3);
-        timeline.to(camera.rotation, { x: -0.2, y: 0.8, ease: "power1.inOut" }, 3);
-
-        timeline.to(camera.position, { x: 0, y: 18, z: 0, ease: "power1.inOut" }, 4);
-        timeline.to(camera.rotation, { x: -1.5, y: 0, z: 0, ease: "power1.inOut" }, 4);
-
-        timeline.to(camera.position, { x: -8, y: 10, z: 25, ease: "power1.inOut" }, 5);
-        timeline.to(camera.rotation, { x: -0.1, y: -0.3, ease: "power1.inOut" }, 5);
-
-        timeline.to(camera.position, { x: 0, y: 22, z: 45, ease: "power3.out" }, 6);
-        timeline.to(camera.rotation, { x: -0.3, y: 0, z: 0, ease: "power3.out" }, 6);
-      });
-
-      mm.add("(max-width: 768px)", () => {
-        // Mobile Timeline - Pull camera back more
-        const timeline = gsap.timeline({
+      const timeline = gsap.timeline({
           scrollTrigger: { trigger: ".viewport", start: "top top", end: "bottom bottom", scrub: 1 }
-        });
-
-        timeline.to(camera.position, { x: -15, y: 5, z: 25, ease: "power1.inOut" }, 0);
-
-        timeline.to(camera.position, { x: 0, y: 5, z: 28, ease: "none" }, 1);
-
-        timeline.to(camera.position, { x: 12, y: 8, z: 22, ease: "power2.inOut" }, 2);
-
-        timeline.to(camera.position, { x: 0, y: 15, z: 30, ease: "power1.inOut" }, 4);
-
-        timeline.to(camera.position, { x: 0, y: 30, z: 55, ease: "power3.out" }, 6);
       });
+      
+      // Plunge through space on scroll
+      timeline.to(camera.position, { z: -100, ease: "power1.inOut" }, 0);
+      timeline.to(camera.rotation, { z: Math.PI / 4, x: -0.2, ease: "power1.inOut" }, 0);
     }
+    initGSAP(); // Run immediately for instant load
 
     // --------------------------------------------------------
     // THE RENDER LOOP
@@ -1033,21 +899,15 @@
     function render() {
       const time = clock.getElapsedTime();
 
-      if (sceneObjects.jelly) {
-        sceneObjects.jelly.position.y = 5 + Math.sin(time * 1.5) * 1.0;
-        sceneObjects.jelly.rotation.y = time * 0.2;
-        sceneObjects.jelly.rotation.z = Math.sin(time * 0.8) * 0.1;
-      }
-
-      if (sceneObjects.pond) {
-        sceneObjects.pond.rotation.y = Math.sin(time * 0.1) * 0.05;
-      }
-
-      // Animate the floating procedural glass spheres
-      sphereGroup.children.forEach(mesh => {
-        mesh.position.y = mesh.userData.initialY + Math.sin(time * mesh.userData.bobSpeed + mesh.userData.bobOffset) * 1.5;
-        mesh.rotation.y = time * 0.1 * mesh.userData.bobSpeed;
-      });
+      // Slowly rotate the galaxy
+      stars.rotation.y = time * 0.02;
+      stars.rotation.x = time * 0.01;
+      
+      dust.rotation.y = time * 0.03;
+      dust.rotation.z = time * 0.015;
+      
+      // Undulate dust slightly for a "gas cloud" breathing effect
+      dust.scale.setScalar(1 + Math.sin(time * 0.5) * 0.05);
 
       renderer.render(scene, camera);
       requestAnimationFrame(render);
